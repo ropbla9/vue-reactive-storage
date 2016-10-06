@@ -2,7 +2,7 @@
   "name": "vue-reactivestorage",
   "version": "1.3.0",
   "description": "Reactive layer for interacting with localStorage from Vue.",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "test"
   },
