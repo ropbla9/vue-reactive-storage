@@ -31,7 +31,7 @@ Vue.use(reactiveStorage, [
 ]); 
 </code></pre>
 
-<p>Define vars that will be stored and proxied by `Vue` (any other var in `window.localStorage` that is not on this array will not be proxied).</p>
+Define vars that will be stored and proxied by `Vue` (any other var in `window.localStorage` that is not on this array will not be proxied).
 
 <p>Now you can acess localStorage in the namespace <code>localStorage</code>.</p>
 
