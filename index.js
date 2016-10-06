@@ -52,10 +52,8 @@ module.exports = {
             watch: (function() {
 
                 // Now, vm.data contains a the namespace localStorage
-                // and its a referecente to _localStorage
                 // We want to create a watcher for all localStorage childrens
                 // When them get updated we sync it with store.set (to localStorage)
-
                 var watchers = (function() {
 
                     var _w = {};
@@ -63,7 +61,7 @@ module.exports = {
                     scheme.forEach(function(item) {
                         _w[item] = function(val) {
                             store.set(item, val);
-                            console.log(`${item} watcher executed...`);
+                            console.log(`${ item } watcher executed...`);
                         };
                     });
 
@@ -78,8 +76,7 @@ module.exports = {
                 //     $children2: ...,
                 // }
                 // But they need contain the father namespace in the key to work in Vue watch
-
-                var name_space_parsed_watchers = (function() {
+                var name_space_parsed = (function() {
 
                     var _w = {};
 
@@ -91,12 +88,12 @@ module.exports = {
 
                 })();
 
-                // now, name_space_parsed_watchers = {
+                // now, name_space_parsed = {
                 //     'localStorage.$children1': ...,
                 //     'localStorage.$children2': ...,
                 // }
 
-                return name_space_parsed_watchers;
+                return name_space_parsed;
 
             })(),
             beforeMount() {
