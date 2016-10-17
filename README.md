@@ -1,4 +1,4 @@
-# vue-reactivestorage
+# vue-reactive-storage
 Reactive layer for interacting with localStorage from Vue. Plugin for Vue 2.
 
 ### why
@@ -19,16 +19,16 @@ new Vue({
 
 Code above will not react, even bind to view. So...
 
-### how to use 
+### how to use
 
 <pre><code>import reactiveStorage from "vue-reactivestorage";
 
 Vue.use(reactiveStorage, [
-    "notes", 
+    "notes",
     "lang",
     "name",
     "foo"
-]); 
+]);
 </code></pre>
 
 Define vars that will be stored and proxied by `Vue` (any other var in `window.localStorage` that is not on this array will not be proxied).
