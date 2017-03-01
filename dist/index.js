@@ -7,13 +7,13 @@ module.exports = {
 
         // Init the layer
         // store.getAll() returns all localStorage serialized
-        // filter() returns store.getAll() without items that may occasionally be out of the Scheme
+        // filter returns store.getAll() without items that may occasionally be out of the Scheme
         var _localStorage = (function() {
 
             var filtered = {};
 
             for (let key in store.getAll()) {
-                if(scheme.indexOf(key) != -1) {
+                if(scheme[key]) {
                     filtered[key] = store.getAll()[key];
                 }
             }
@@ -27,19 +27,25 @@ module.exports = {
         (function verify_scheme() {
 
             // Validate scheme existence and scheme type
-            if ( !scheme || !Array.isArray(scheme) ) {
-                console.error("Schemes are not defined or are not an Array.");
+            if (scheme === undefined) {
+                console.error("Schemes are not defined.");
                 return false;
             }
 
             // Check if localStorage contain all keys specified in Scheme
             // If a key fails, it will be seted to null, this way Vue can start watching it
-            scheme.forEach(function(val) {
-                if(!_localStorage[val]) {
-                    _localStorage[val] = null;
-                    store.set(val, null);
+            // scheme.forEach(function(val) {
+            //     if(!_localStorage[val]) {
+            //         _localStorage[val] = null;
+            //         store.set(val, null);
+            //     }
+            // });
+
+            Object.keys(scheme).forEach((key, i) => {
+                if(!_localStorage[key]) {
+                    store.set(key, new scheme[key]());
                 }
-            });
+            })
         })();
 
         // Now we're sure _localStorage contains all the keys in scheme
@@ -58,10 +64,10 @@ module.exports = {
 
                     var _w = {};
 
-                    scheme.forEach(function(item) {
-                        _w[item] = function(val) {
-                            store.set(item, val);
-                            console.log(`${ item } watcher executed...`);
+                    Object.keys(scheme).forEach(function(key, i) {
+                        _w[key] = function(val) {
+                            store.set(key, val);
+                            console.log(`${ key } watcher executed...`);
                         };
                     });
 
