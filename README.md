@@ -23,12 +23,13 @@ Code above will not react, even bind to view. So...
 
 <pre><code>import reactiveStorage from "vue-reactivestorage";
 
-Vue.use(reactiveStorage, [
-    "notes",
-    "lang",
-    "name",
-    "foo"
-]);
+Vue.use(reactiveStorage, {
+    "notes": String,
+    "lang": String,
+    "name": String,
+    "count": Number,
+    "userConfig": Object
+});
 </code></pre>
 
 Define vars that will be stored and proxied by `Vue` (any other var in `window.localStorage` that is not on this array will not be proxied).
