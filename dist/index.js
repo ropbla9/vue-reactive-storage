@@ -33,14 +33,7 @@ module.exports = {
             }
 
             // Check if localStorage contain all keys specified in Scheme
-            // If a key fails, it will be seted to null, this way Vue can start watching it
-            // scheme.forEach(function(val) {
-            //     if(!_localStorage[val]) {
-            //         _localStorage[val] = null;
-            //         store.set(val, null);
-            //     }
-            // });
-
+            // if it matches any undefined it will create a new value acording to type in scheme
             Object.keys(scheme).forEach((key, i) => {
                 if(!_localStorage[key]) {
                     store.set(key, new scheme[key]());
