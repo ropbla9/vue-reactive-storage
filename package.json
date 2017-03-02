@@ -19,6 +19,9 @@
     "vue2"
   ],
   "author": "rop",
+  "contributors": [
+    "Vinicius Reis <luiz.vinicius73@gmail.com> (https://github.com/vinicius73)"
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ropbla9/vue-reactivestorage/issues"
