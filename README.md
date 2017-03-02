@@ -22,7 +22,7 @@ Code above will not react, even bind to view. So...
 ### how to use
 
 ```js
-import reactiveStorage from "vue-reactivestorage";
+import reactiveStorage from "vue-reactive-storage";
 
 Vue.use(reactiveStorage, {
     "notes": String,
