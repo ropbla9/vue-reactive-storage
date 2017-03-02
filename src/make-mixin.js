@@ -1,6 +1,6 @@
 const store = require('store')
 
-const makeWatchers = (storage, dataKey) => Object.keys((acc, key) => {
+const makeWatchers = (storage, dataKey) => Object.keys(storage).reduce((acc, key) => {
   const vueKey = `${dataKey}.${key}`
   // allow .bind
   const handler = function handler (value) {
