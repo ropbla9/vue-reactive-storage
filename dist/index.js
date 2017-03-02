@@ -76,56 +76,58 @@ module.exports = store;
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const store = __webpack_require__(0)
+var store = __webpack_require__(0)
 
-const makeWatchers = (storage, dataKey) => Object.keys((acc, key) => {
-  const vueKey = `${dataKey}.${key}`
+var makeWatchers = function (storage, dataKey) { return Object.keys(function (acc, key) {
+  var vueKey = dataKey + "." + key
   // allow .bind
-  const handler = function handler (value) {
+  var handler = function handler (value) {
     store.set(key, value)
-    console.log(`${vueKey} watcher executed...`)
+    console.log((vueKey + " watcher executed..."))
   }
 
-  return Object.assign({ [vueKey]: { handler } }, acc)
-}, {})
+  return Object.assign(( obj = {}, obj[vueKey] = { handler: handler }, obj ), acc)
+  var obj;
+}, {}); }
 
-module.exports = (storage, dataKey) => ({
-  data: () => ({
-    [dataKey]: storage
-  }),
+module.exports = function (storage, dataKey) { return ({
+  data: function () { return (( obj = {}, obj[dataKey] = storage, obj ))
+    var obj;; },
   watch: makeWatchers(storage, dataKey)
-})
+}); }
 
 
 /***/ }),
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const store = __webpack_require__(0)
+var store = __webpack_require__(0)
 
-const addActions = storage => Object.assign({
-  remove (key) {
+var addActions = function (storage) { return Object.assign({
+  remove: function remove (key) {
     if (this[key] === undefined) {
-      console.warn(`${key} not exist in storage`)
+      console.warn((key + " not exist in storage"))
       return
     }
 
     this[key] = null
   },
-  clear () {
-    const blocked = ['clear', 'remove']
-    const keys = Object.keys(this).filter(key => blocked.indexOf(key) === -1)
-    keys.forEach(key => {
-      this[key] = null
+  clear: function clear () {
+    var this$1 = this;
+
+    var blocked = ['clear', 'remove']
+    var keys = Object.keys(this).filter(function (key) { return blocked.indexOf(key) === -1; })
+    keys.forEach(function (key) {
+      this$1[key] = null
     })
   }
-}, storage)
+}, storage); }
 
-module.exports = schema => {
-  const local = store.getAll()
-  const storage = Object.keys(schema)
-    .reduce((acc, key) => {
-      const value = local[key] || new schema[key]()
+module.exports = function (schema) {
+  var local = store.getAll()
+  var storage = Object.keys(schema)
+    .reduce(function (acc, key) {
+      var value = local[key] || new schema[key]()
       return Object.assign({ key: value }, acc)
     }, {})
 
@@ -137,15 +139,17 @@ module.exports = schema => {
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const makeStorage = __webpack_require__(2)
-const makeMixin = __webpack_require__(1)
+var makeStorage = __webpack_require__(2)
+var makeMixin = __webpack_require__(1)
 
-const install = (Vue, schema, dataKey = 'localStorage') => {
-  const storage = makeStorage(schema)
+var install = function (Vue, schema, dataKey) {
+  if ( dataKey === void 0 ) dataKey = 'localStorage';
+
+  var storage = makeStorage(schema)
   Vue.mixin(makeMixin(storage, dataKey))
 }
 
-module.exports = { install }
+module.exports = { install: install }
 
 
 /***/ })

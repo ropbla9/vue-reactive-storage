@@ -1,4 +1,4 @@
-const { resolve } = require('path')
+const { resolve, join } = require('path')
 
 module.exports = {
   entry: './src/index.js',
@@ -8,5 +8,15 @@ module.exports = {
   },
   externals: {
     store: 'store'
+  },
+  module: {
+    rules: [{
+      test: /.js$/,
+      loaders: 'buble-loader',
+      include: join(__dirname, 'src'),
+      query: {
+        objectAssign: 'Object.assign'
+      }
+    }]
   }
 }
