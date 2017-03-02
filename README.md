@@ -5,23 +5,24 @@ Reactive layer for interacting with localStorage from Vue. Plugin for Vue 2.
 
 `window.localStorage` cannot be reactive if you use it directly with Vue, ex
 
-<pre><code>
+```js
 new Vue({
     data {
       localStorage: window.localStorage
     },
-    template: " &lt;div&gt; {{localStorage.notes}}, {{localStorage.lang}} ... &lt;/div&gt; ",
+    template: " <div> {{localStorage.notes}}, {{localStorage.lang}} ... </div> ",
     created: function() {
         this.localStorage.lang = "other value";
     }
 })
-</code></pre>
+```
 
 Code above will not react, even bind to view. So...
 
 ### how to use
 
-<pre><code>import reactiveStorage from "vue-reactivestorage";
+```js
+import reactiveStorage from "vue-reactivestorage";
 
 Vue.use(reactiveStorage, {
     "notes": String,
@@ -30,16 +31,17 @@ Vue.use(reactiveStorage, {
     "count": Number,
     "userConfig": Object
 });
-</code></pre>
+```
 
 Define vars that will be stored and proxied by `Vue` (any other var in `window.localStorage` that is not on this array will not be proxied).
 
 Now you can acess the namespace <code>localStorage</code> in Vue.
 
-<pre><code>new Vue({
-    template: " &lt;div&gt; {{localStorage.notes}}, {{localStorage.lang}} ... &lt;/div&gt; ",
+```js
+new Vue({
+    template: " <div> {{localStorage.notes}}, {{localStorage.lang}} ... </div> ",
     created: function() {
         this.localStorage.lang = "other value"; // will react on the view and on real localStorage.
     }
 })
-</code></pre>
+```
