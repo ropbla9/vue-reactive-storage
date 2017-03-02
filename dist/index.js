@@ -88,7 +88,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
 
 var store = __webpack_require__(0)
 
-var makeWatchers = function (storage, dataKey) { return Object.keys(function (acc, key) {
+var makeWatchers = function (storage, dataKey) { return Object.keys(storage).reduce(function (acc, key) {
   var vueKey = dataKey + "." + key
   // allow .bind
   var handler = function handler (value) {
@@ -113,35 +113,16 @@ module.exports = function (storage, dataKey) { return ({
 
 var store = __webpack_require__(0)
 
-var addActions = function (storage) { return Object.assign({
-  remove: function remove (key) {
-    if (this[key] === undefined) {
-      console.warn((key + " not exist in storage"))
-      return
-    }
-
-    this[key] = null
-  },
-  clear: function clear () {
-    var this$1 = this;
-
-    var blocked = ['clear', 'remove']
-    var keys = Object.keys(this).filter(function (key) { return blocked.indexOf(key) === -1; })
-    keys.forEach(function (key) {
-      this$1[key] = null
-    })
-  }
-}, storage); }
-
 module.exports = function (schema) {
+  // console.log(schema)
   var local = store.getAll()
-  var storage = Object.keys(schema)
-    .reduce(function (acc, key) {
-      var value = local[key] || new schema[key]()
-      return Object.assign({ key: value }, acc)
-    }, {})
-
-  return addActions(storage)
+  var storage = Object.keys(schema).reduce(function (acc, key) {
+    var value = local[key] || new schema[key]()
+    return Object.assign(( obj = {}, obj[key] = value, obj ), acc)
+    var obj;
+  }, {})
+  // console.log(storage)
+  return storage
 }
 
 
@@ -155,6 +136,7 @@ var makeMixin = __webpack_require__(1)
 var install = function (Vue, schema, dataKey) {
   if ( dataKey === void 0 ) dataKey = 'localStorage';
 
+  // console.log(schema, dataKey);
   var storage = makeStorage(schema)
   Vue.mixin(makeMixin(storage, dataKey))
 }
