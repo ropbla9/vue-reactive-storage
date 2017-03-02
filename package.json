@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "test",
-    "build": "webpack --config webpack.config.js",
+    "build": "npm run lint && webpack --config webpack.config.js",
     "lint": "eslint src/*.js"
   },
   "repository": {
