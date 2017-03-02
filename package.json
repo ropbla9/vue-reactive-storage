@@ -4,7 +4,8 @@
   "description": "Reactive layer for interacting with localStorage from Vue 2.",
   "main": "dist/index.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "lint": "eslint dist/*.js"
   },
   "repository": {
     "type": "git",
