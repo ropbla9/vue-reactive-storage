@@ -1,4 +1,14 @@
-/******/ (function(modules) { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory(require("store"));
+	else if(typeof define === 'function' && define.amd)
+		define(["store"], factory);
+	else {
+		var a = typeof exports === 'object' ? factory(require("store")) : factory(root["store"]);
+		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
+	}
+})(this, function(__WEBPACK_EXTERNAL_MODULE_0__) {
+return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 
@@ -70,7 +80,7 @@
 /* 0 */
 /***/ (function(module, exports) {
 
-module.exports = store;
+module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
 
 /***/ }),
 /* 1 */
@@ -154,3 +164,4 @@ module.exports = { install: install }
 
 /***/ })
 /******/ ]);
+});

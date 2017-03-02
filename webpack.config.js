@@ -4,7 +4,8 @@ module.exports = {
   entry: './src/index.js',
   output: {
     filename: 'index.js',
-    path: resolve(__dirname, 'dist')
+    path: resolve(__dirname, 'dist'),
+    libraryTarget: 'umd'
   },
   externals: {
     store: 'store'
