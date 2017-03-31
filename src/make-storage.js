@@ -4,7 +4,7 @@ module.exports = schema => {
   // console.log(schema)
   const local = store.getAll()
   const storage = Object.keys(schema).reduce((acc, key) => {
-    const value = local[key] || new schema[key]()
+    const value = local[key] || schema[key]
     return Object.assign({ [key]: value }, acc)
   }, {})
   // console.log(storage)
