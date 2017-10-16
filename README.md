@@ -23,13 +23,13 @@ Code above will not react, even bind to view. So...
 
 ```js
 import reactiveStorage from "vue-reactive-storage";
-
+// Set initial values
 Vue.use(reactiveStorage, {
-    "notes": String,
-    "lang": String,
-    "name": String,
-    "count": Number,
-    "userConfig": Object
+    "notes": 'foo',
+    "lang": 'foo',
+    "name": 'foo',
+    "count": 1,
+    "userConfig": {age: 10, name: 'fred'}
 });
 ```
 
