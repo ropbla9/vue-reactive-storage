@@ -1,6 +1,12 @@
 # vue-reactive-storage
 Reactive layer for interacting with localStorage from Vue. Plugin for Vue 2.
 
+### install
+
+`npm install --save https://github.com/ropbla9/vue-reactive-storage`
+
+* This package is not on NPM, use GitHub source only.
+
 ### why
 
 `window.localStorage` cannot be reactive if you use it directly with Vue, ex
